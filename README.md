@@ -1,3 +1,3 @@
 # resume
 
-![Resume](Resume.jpg)
+![Resume](Resume.png)
