@@ -6,5 +6,5 @@ magick -density 300 cv/*.pdf -depth 8 -strip -background white -alpha off cv/CV.
 magick -density 300 resume/*.pdf -depth 8 -strip -background white -alpha off resume/Resume.png
 
 rm -rf docs/cv docs/resume
-cp -r cv docs/
+# cp -r cv docs/
 cp -r resume docs/
