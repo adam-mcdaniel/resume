@@ -1,6 +1,7 @@
 # Resume
 
-[![Resume](resume/Resume.png)](resume/Resume.pdf)
+[![Resume](resume/Resume-0.png)](resume/Resume.pdf)
+[![Resume](resume/Resume-1.png)](resume/Resume.pdf)
 
 # Curriculum Vitae
 
