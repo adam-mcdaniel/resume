@@ -65,8 +65,8 @@ cat > "$out/index.html" <<HTML
       <a class="secondary" href="https://adam-mcdaniel.net">Website</a>
     </nav>
   </header>
-  <p class="intro">Ph.D. student at the University of Tennessee, Knoxville, researching energy-aware compilers
-  and runtime systems for GPU-accelerated HPC and AI workloads. Research intern at Oak Ridge National Laboratory.</p>
+  <p class="intro">Ph.D. student at the University of Tennessee, Knoxville, researching energy-aware runtime systems
+  and compilers for GPU-accelerated HPC and AI workloads. Research intern at Oak Ridge National Laboratory.</p>
   <main>
 $pages  </main>
 </body>
