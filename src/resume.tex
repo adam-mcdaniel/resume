@@ -1,0 +1,153 @@
+\documentclass[paper=letter,fontsize=11pt]{scrartcl} % KOMA-article class
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
+% The web page crops the page images to the text block, so scripts/make-site.sh
+% has to know this margin. Change MARGIN_IN there if you change it here.
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage[colorlinks=true, linkcolor=LinkBlue, urlcolor=LinkBlue]{hyperref}
+\hypersetup{pdftitle={Adam McDaniel - Resume}, pdfauthor={Adam McDaniel}}
+\usepackage{enumitem}
+\definecolor{LinkBlue}{HTML}{0B5CAD}
+\frenchspacing              % Better looking spacings after periods
+\pagestyle{empty}           % No pagenumbers/headers/footers
+\setlength\parindent{0pt}
+\raggedbottom
+
+% One list style for the whole document: tight, bullets flush with the margin.
+\setlist[itemize]{leftmargin=1.15em, itemsep=1.5pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+
+%%% Custom sectioning (sectsty package)
+%%% ------------------------------------------------------------
+\usepackage{sectsty}
+
+\sectionfont{%                          % Change font of \section command
+	\usefont{OT1}{phv}{b}{n}%           % Helvetica bold
+	\large
+	\sectionrule{0pt}{0pt}{-5pt}{0.8pt}}
+
+%%% Macros
+%%% ------------------------------------------------------------
+\newcommand{\MyName}[1]{{\Huge\usefont{OT1}{phv}{b}{n} #1\par}}
+
+\newcommand{\ContactSep}{\hspace{0.6em}\textbar\hspace{0.6em}}
+
+\newcommand{\NewPart}[1]{\vspace{-0.35em}\section*{\uppercase{#1}}\vspace{-0.35em}}
+
+% \Job{Title}{Employer}{Dates}, followed by an itemize of what was done.
+\newcommand{\Job}[3]{%
+	\vspace{0.45em}%
+	\textbf{#1}, \textit{#2} \hfill #3\par}
+
+% \Degree{Degree}{Detail}{Dates}
+\newcommand{\Degree}[3]{%
+	\textbf{#1} {\small\hspace{0.3em}#2} \hfill \mbox{#3}\par\vspace{0.15em}}
+
+%%% Private details
+%%% ------------------------------------------------------------
+%%% This file is public. Details that should not be on the web live in
+%%% private.tex (git-ignored, see private.example.tex). Each \Private{key}{...}
+%%% prints the private version of `key` when private.tex defines it, and the
+%%% public text in the second argument otherwise.
+\makeatletter
+\newcommand{\DefinePrivate}[2]{\@namedef{private@#1}{#2}}
+\newcommand{\Private}[2]{\@ifundefined{private@#1}{#2}{\@nameuse{private@#1}}}
+\makeatother
+\InputIfFileExists{private.tex}{}{}
+
+%%% Begin Document
+%%% ------------------------------------------------------------
+\begin{document}
+
+\MyName{Adam Ryan McDaniel}
+\vspace{0.5em}
+{\small
+\Private{phone}{}%
+\href{mailto:amcdan23@vols.utk.edu}{amcdan23@vols.utk.edu}\ContactSep
+\href{https://adam-mcdaniel.net}{adam-mcdaniel.net}\ContactSep
+\href{https://github.com/adam-mcdaniel/}{github.com/adam-mcdaniel}\par}
+\vspace{0.7em}
+
+%%% Summary
+%%% ------------------------------------------------------------
+Ph.D. student at the University of Tennessee (graduating Fall 2027) and research intern at Oak Ridge National Laboratory, working on GPU energy efficiency. First-author ISC 2026 paper on attributing millisecond-level GPU power to source code on Frontier; built a phase-aware GPU autotuner at AMD.
+%%% Education
+%%% ------------------------------------------------------------
+\NewPart{Education}
+\textit{University of Tennessee, Knoxville}\par\vspace{0.15em}
+\Degree{Ph.D. in Computer Science}{GPA 3.93. Proposal: Jan 2027.}{May 2024--Fall 2027 (expected)}
+\Degree{M.S. in Computer Science}{GPA 3.90.}{Dec 2022--May 2024}
+\Degree{B.S. in Computer Science}{GPA 3.95. Completed in five semesters.}{Aug 2020--Dec 2022}
+
+%%% Experience
+%%% ------------------------------------------------------------
+\NewPart{Research Experience}
+
+\Job{Graduate Research Intern}{Oak Ridge National Laboratory}{May 2025--Present}
+\begin{itemize}
+\item Built a profiler that samples GPU power at millisecond resolution on the Frontier and Portage supercomputers and attributes energy use to source code (first-author paper at ISC 2026).
+\item Contributed changes upstream to AMD's \texttt{rocm-smi-lib} that expose GPU energy counters to PAPI.
+\item Characterized HPL and HPG benchmarks on up to 512 MI250X GPUs and 480 MI300A APUs with HPE and AMD; showed mixed precision cuts Frontier node energy by up to 79\%.
+\Private{ipdps-study}{\item Led a multi-institution study of how scientific software libraries affect GPU energy efficiency.}
+\end{itemize}
+
+\Job{Research Associate}{Advanced Micro Devices (AMD)}{Jun 2026--Sep 2026}
+\begin{itemize}
+\Private{amd}{%
+\item Built a tool that improves GPU energy efficiency by classifying application phase behavior at runtime and adapting power-management settings to each phase.
+\item Designed an autotuning workflow that combines LLM-guided search with Bayesian optimization, and evaluated it against traditional optimization techniques on compute- and memory-bound HPC workloads.}
+\end{itemize}
+
+\Job{Graduate Research Intern}{Oak Ridge National Laboratory}{May 2024--Aug 2024}
+\begin{itemize}
+\Private{ornl-2024}{%
+\item Built a process-monitoring system for anomaly detection in automated nuclear materials processing, using auto-encoder models to flag anomalies and LLMs to help diagnose them.}
+\end{itemize}
+
+\Job{Graduate Research Assistant}{University of Tennessee}{May 2023--Present}
+\begin{itemize}
+\item Runtime-systems research under Dr. Michael Jantz on CPU memory efficiency and performance.
+\item Wrote memory profilers in C++ that identify cold, compressible RAM regions while an application runs.
+\end{itemize}
+
+%%% Publications
+%%% ------------------------------------------------------------
+\NewPart{Publications}
+\begin{itemize}[itemsep=3pt]
+\Private{ipdps-pub}{}
+\item \textbf{McDaniel, A.}, Jantz, M., Sharma, A., Abbott, S., Martin, S., Khandekar, S., Neth, B., Villasenor Alvarez, B., Kashi, A., Elwasif, W., and Hernandez, O. \href{https://arxiv.org/abs/2604.06056}{``Fine-Grained Power and Energy Attribution on AMD GPU/APU-Based Exascale Nodes.''} \textit{ISC High Performance}, 2026.
+
+\item Hernandez, O., Sharma, A., Martin, S., Jajja, S. A., Park, W. Y., \textbf{McDaniel, A.}, Elwasif, W. R., and Nawaz, K. \href{https://www.nae.edu/349886/next-generation-data-centers-count-every-watt-and-let-every-watt-count-}{``Next-Generation Data Centers: Count Every Watt and Let Every Watt Count.''} \textit{The Bridge} (National Academy of Engineering), 2026.
+
+\item Jahanshahi, M., Reid, D., \textbf{McDaniel, A.}, and Mockus, A. \href{https://doi.org/10.1109/MSR66628.2025.00032}{``OSS License Identification at Scale: A Comprehensive Dataset Using World of Code.''} \textit{22nd International Conference on Mining Software Repositories (MSR)}, 2025.
+\end{itemize}
+
+%%% Projects
+%%% ------------------------------------------------------------
+\NewPart{Projects}
+\begin{itemize}[itemsep=3pt]
+\item \href{https://github.com/adam-mcdaniel/ampere}{\textbf{Ampere}} (2026): Python tool for analyzing single runs or ensembles of exascale Score-P/OTF2 traces. Attributes GPU energy and power to functions, call paths, and MPI ranks, using Arkouda to process traces too large for one node's memory. Outputs flamegraphs, node timelines, and heatmaps.
+\item \href{https://github.com/adam-mcdaniel/sage}{\textbf{Sage Programming Language \& OS}} (2022--2024): Statically typed, compiled language with structural typing, parametric polymorphism, algebraic datatypes, and pattern matching. Compact zero-address-code IR with x86-64, C, and interpreter backends; genetic-algorithm optimization cut generated code size by up to 20\%. Used it to write the userspace of a custom RISC-V operating system. YouTube deep-dive has 300,000+ views.
+\item \href{https://github.com/adam-mcdaniel/dune}{\textbf{Dune Shell}} (2021--2024): Cross-platform shell with Lisp-like scripting and line completion (1.1k GitHub stars).
+\end{itemize}
+
+%%% Technical Skills
+%%% ------------------------------------------------------------
+\NewPart{Technical Skills}
+\begin{itemize}
+\item \textbf{Languages:} C++, C, Rust, Python, Bash, Lisp, x86-64 and RISC-V Assembly
+\item \textbf{GPU, HPC, and compilers:} ROCm, HIP, OpenMP, Arkouda, LLVM
+\item \textbf{Performance and power tools:} PAPI, Score-P, OTF2, \texttt{rocm-smi}, \texttt{amd-smi}
+\end{itemize}
+
+%%% Academic Service
+%%% ------------------------------------------------------------
+\NewPart{Academic Service}
+\begin{itemize}
+\item Program Committee Member, \textit{MSR Data and Tool Showcase Track}, 2027
+\item Program Committee Member, \textit{gem5 Workshop}, 2026
+\item Peer Reviewer, \textit{Mining Software Repositories (MSR)}, 2026
+\end{itemize}
+\end{document}

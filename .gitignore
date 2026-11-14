@@ -1,2 +1,16 @@
 .DS_Store
+build/
+
+# Private details for the full resume. Never commit.
+private.tex
+
+# Old CV build output (local only)
 cv/
+
+# LaTeX output from compiling in an editor
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+src/*.pdf

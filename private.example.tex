@@ -1,0 +1,15 @@
+% Template for private.tex, which holds the details that stay off the web.
+% Copy it:   cp private.example.tex private.tex
+% Build it:  make private   ->  build/Resume-private.pdf
+%
+% private.tex is git-ignored. Each \DefinePrivate{key}{...} replaces the public
+% text of the matching \Private{key}{...} in src/resume.tex. Keys you leave out
+% keep their public text.
+
+\DefinePrivate{phone}{+1 (555) 555-5555\ContactSep}
+
+% Every other key sits inside a bullet list, so write it as one or more \item entries.
+% \DefinePrivate{amd}{\item Full description, including unpublished results.}
+% \DefinePrivate{ipdps-study}{\item ...}
+% \DefinePrivate{ornl-2024}{\item ...}
+% \DefinePrivate{ipdps-pub}{\item Paper that is still under anonymous review.}
